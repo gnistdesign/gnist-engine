@@ -5,6 +5,7 @@
     "keywords": ["wordpress", "plugin dependency", "actions", "hooks"],
     "homepage": "https://github.com/gnistdesign/gnist-engine/",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Henrik Jakobsen",
