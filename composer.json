@@ -1,0 +1,37 @@
+{
+    "name": "gnistdesign/gnist-engine",
+    "type": "library",
+    "description": "A custom hooks-library for WordPress with the purpose of mimicing the behavior of something called 'plugin dependency' which enables a plugin to have plugins of their own in a safe and reliable way.",
+    "keywords": ["wordpress", "plugin dependency", "actions", "hooks"],
+    "homepage": "https://github.com/gnistdesign/gnist-engine/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Henrik Jakobsen",
+            "email": "henrik@gnistdesign.no",
+            "homepage": "https://gnistdesign.no/",
+            "role": "Developer"
+        },
+        {
+            "name": "Stian Andreassen",
+            "email": "stian@gnistdesign.no",
+            "homepage": "https://gnistdesign.no/",
+            "role": "Developer"
+        },
+        {
+            "name": "Sarah Galantini",
+            "email": "sarah@gnistdesign.no",
+            "homepage": "https://gnistdesign.no/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3"
+    },
+    "autoload": {
+        "files": [
+            "src/WP/sub-actions.php",
+            "src/WP/actions.php"
+        ]
+    }
+}
