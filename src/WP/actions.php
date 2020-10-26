@@ -53,6 +53,7 @@ defined( 'ABSPATH' ) || exit;
 \add_action( 'admin_notices',         __NAMESPACE__ . '\\admin_notices',         10 );
 \add_action( 'admin_init',            __NAMESPACE__ . '\\admin_init',            10 );
 \add_action( 'admin_menu',            __NAMESPACE__ . '\\admin_menu',            10 );
+\add_action( 'admin_head',            __NAMESPACE__ . '\\admin_head',            10 );
 
 /**
  * Public actions.

@@ -201,6 +201,19 @@ function admin_menu() {
 	\do_action( 'gnist/admin/menu' );
 }
 
+/**
+ * Fires in head section for all admin pages.
+ *
+ * Hook: gnist/admin/head
+ *
+ * @hooked admin_head
+ *
+ * @link https://developer.wordpress.org/reference/hooks/admin_head/
+ */
+function admin_head() {
+	\do_action( 'gnist/admin/head' );
+}
+
 /** Public Actions ************************************************************/
 
 /**
