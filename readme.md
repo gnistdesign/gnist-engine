@@ -9,7 +9,7 @@ Stable tag: 1.0.0
 License: MIT  
 License URI: https://opensource.org/licenses/MIT  
 
-Gnist Engine | Plugin Dependency.   
+Gnist Engine | WordPress Plugin Dependency.   
 
 ## Description
 
@@ -33,6 +33,6 @@ Install using Composer:
 
 ## Changelog
 
-### 1.0.0 [26-10-2020]
+### 1.0.0 [27-10-2020]
 
 * Initial release of the library.
