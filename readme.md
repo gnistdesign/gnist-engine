@@ -33,6 +33,6 @@ Install using Composer:
 
 ## Changelog
 
-### 1.0.0 [27-10-2020]
+### 1.0.0 [28-10-2020]
 
 * Initial release of the library.
