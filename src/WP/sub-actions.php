@@ -255,6 +255,19 @@ function body_open() {
 	\do_action( 'gnist/body_open' );
 }
 
+/**
+ * Prints scripts or data before the closing body tag on the front end.
+ *
+ * Hook: gnist/wp_footer
+ *
+ * @hooked wp_footer
+ *
+ * @link https://developer.wordpress.org/reference/functions/wp_footer/
+ */
+function footer() {
+	\do_action( 'gnist/wp_footer' );
+}
+
 /** Supplemental Actions - gnist/init *****************************************/
 
 /**

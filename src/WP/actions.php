@@ -61,6 +61,7 @@ defined( 'ABSPATH' ) || exit;
 \add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts', 10 );
 \add_action( 'wp_head',            __NAMESPACE__ . '\\head',            10 );
 \add_action( 'wp_body_open',       __NAMESPACE__ . '\\body_open',       10 );
+\add_action( 'wp_footer',          __NAMESPACE__ . '\\footer',          10 );
 
 /**
  * Action: gnist/init - Attached to 'init' above.
