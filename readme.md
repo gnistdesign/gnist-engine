@@ -33,6 +33,10 @@ Install using Composer:
 
 ## Changelog
 
+### 1.0.1 [18-11-2020]
+
+* Tweak - Minor change in configs.
+
 ### 1.0.0 [28-10-2020]
 
 * Initial release of the library.
