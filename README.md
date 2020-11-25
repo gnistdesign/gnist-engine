@@ -5,7 +5,7 @@ Donate link: https://gnistdesign.no
 Requires at least: 5.4  
 Tested up to: 5.5  
 Requires PHP: 7.3  
-Stable tag: 1.0.0  
+Stable tag: 1.0.1  
 License: MIT  
 License URI: https://opensource.org/licenses/MIT  
 
@@ -32,6 +32,14 @@ Install using Composer:
 * PHP 7.3 or greater is required.
 
 ## Changelog
+
+### 1.0.1 [25-11-2020]
+
+* [Tweak] `gnist/head` now called `gnist/wp/head`.
+* [Tweak] `gnist/body_open` now called `gnist/wp/body_open`.
+* [Tweak] `gnist/body_open` now called `gnist/wp/body_open`.
+* [Tweak] `Gnist\Engine\WP\register_custom_post_type` now hooked to `init`.
+* [Tweak] `Gnist\Engine\WP\register_taxonomy` now hooked to `init`.
 
 ### 1.0.0 [18-11-2020]
 

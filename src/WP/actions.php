@@ -20,6 +20,7 @@
  * @license   MIT
  * @link      https://gnistdesign.no
  * @since     1.0.0
+ * @version   1.0.1
  *
  * Copyright (c) 2020 Gnist Design AS
  *
@@ -39,12 +40,14 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Attach to WordPress.
  */
-\add_action( 'plugins_loaded',    __NAMESPACE__ . '\\loaded',            5  );
-\add_action( 'init',              __NAMESPACE__ . '\\init',              0  );
-\add_action( 'init',              __NAMESPACE__ . '\\actions',           5  );
-\add_action( 'setup_theme',       __NAMESPACE__ . '\\setup_theme',       10 );
-\add_action( 'after_setup_theme', __NAMESPACE__ . '\\after_setup_theme', 10 );
-\add_action( 'wp_loaded',         __NAMESPACE__ . '\\wp_loaded',         10 );
+\add_action( 'plugins_loaded',    __NAMESPACE__ . '\\loaded',                    5  );
+\add_action( 'init',              __NAMESPACE__ . '\\init',                      0  );
+\add_action( 'init',              __NAMESPACE__ . '\\actions',                   5  );
+\add_action( 'init',              __NAMESPACE__ . '\\register_custom_post_type', 5 );
+\add_action( 'init',              __NAMESPACE__ . '\\register_taxonomy',         5 );
+\add_action( 'setup_theme',       __NAMESPACE__ . '\\setup_theme',               10 );
+\add_action( 'after_setup_theme', __NAMESPACE__ . '\\after_setup_theme',         10 );
+\add_action( 'wp_loaded',         __NAMESPACE__ . '\\wp_loaded',                 10 );
 
 /**
  * Admin actions.
@@ -59,9 +62,9 @@ defined( 'ABSPATH' ) || exit;
  * Public actions.
  */
 \add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts', 10 );
-\add_action( 'wp_head',            __NAMESPACE__ . '\\head',            10 );
-\add_action( 'wp_body_open',       __NAMESPACE__ . '\\body_open',       10 );
-\add_action( 'wp_footer',          __NAMESPACE__ . '\\footer',          10 );
+\add_action( 'wp_head',            __NAMESPACE__ . '\\wp_head',         10 );
+\add_action( 'wp_body_open',       __NAMESPACE__ . '\\wp_body_open',    10 );
+\add_action( 'wp_footer',          __NAMESPACE__ . '\\wp_footer',       10 );
 
 /**
  * Action: gnist/init - Attached to 'init' above.
@@ -75,5 +78,3 @@ defined( 'ABSPATH' ) || exit;
 \add_action( 'gnist/init', __NAMESPACE__ . '\\setup_requirements',        10 );
 \add_action( 'gnist/init', __NAMESPACE__ . '\\setup_instances',           10 );
 \add_action( 'gnist/init', __NAMESPACE__ . '\\setup_globals',             10 );
-\add_action( 'gnist/init', __NAMESPACE__ . '\\register_custom_post_type', 10 );
-\add_action( 'gnist/init', __NAMESPACE__ . '\\register_taxonomy',         10 );

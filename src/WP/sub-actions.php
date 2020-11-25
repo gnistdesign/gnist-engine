@@ -21,6 +21,7 @@
  * @license   MIT
  * @link      https://gnistdesign.no
  * @since     1.0.0
+ * @version   1.0.1
  *
  * Copyright (c) 2020 Gnist Design AS
  *
@@ -82,6 +83,38 @@ function init() {
  */
 function actions() {
 	\do_action( 'gnist/actions' );
+}
+
+/**
+ * Register custom post types.
+ *
+ * Hook: gnist/register/custom_post_type
+ *
+ * @hooked init
+ *
+ * @since 1.0.1 Hooked to init
+ *
+ * @link https://developer.wordpress.org/reference/hooks/init/
+ * @link https://developer.wordpress.org/reference/functions/register_post_type/
+ */
+function register_custom_post_type() {
+	\do_action( 'gnist/register/custom_post_type' );
+}
+
+/**
+ * Register taxonomy.
+ *
+ * Hook: gnist/register/taxonomy
+ *
+ * @hooked init
+ *
+ * @since 1.0.1 Hooked to init
+ *
+ * @link https://developer.wordpress.org/reference/hooks/init/
+ * @link https://developer.wordpress.org/reference/functions/register_taxonomy/
+ */
+function register_taxonomy() {
+	\do_action( 'gnist/register/taxonomy' );
 }
 
 /**
@@ -154,7 +187,7 @@ function admin_enqueue_scripts( $hook_suffix ) {
 	/**
 	 * Enqueue scripts and styles in admin.
 	 *
-	 * gnist/admin/scripts
+	 * Hook: gnist/admin/scripts
 	 *
 	 * @param string $hook_suffix Current admin page.
 	 * @param array  $screens     Allowed admin screens.
@@ -232,40 +265,46 @@ function enqueue_scripts() {
 /**
  * Prints scripts or data in the head tag on the front end.
  *
- * Hook: gnist/head
+ * Hook: gnist/wp/head
  *
  * @hooked wp_head
  *
+ * @since 1.0.1 Put `wp` in action-namespace.
+ *
  * @link https://developer.wordpress.org/reference/functions/wp_head/
  */
-function head() {
-	\do_action( 'gnist/head' );
+function wp_head() {
+	\do_action( 'gnist/wp/head' );
 }
 
 /**
  * Triggered after the opening body tag.
  *
- * Hook: gnist/body_open
+ * Hook: gnist/wp/body_open
  *
  * @hooked wp_body_open
  *
+ * @since 1.0.1 Put `wp` in action-namespace.
+ *
  * @link https://developer.wordpress.org/reference/functions/wp_body_open/
  */
-function body_open() {
-	\do_action( 'gnist/body_open' );
+function wp_body_open() {
+	\do_action( 'gnist/wp/body_open' );
 }
 
 /**
  * Prints scripts or data before the closing body tag on the front end.
  *
- * Hook: gnist/wp_footer
+ * Hook: gnist/wp/footer
  *
  * @hooked wp_footer
  *
+ * @since 1.0.1 Put `wp` in action-namespace.
+ *
  * @link https://developer.wordpress.org/reference/functions/wp_footer/
  */
-function footer() {
-	\do_action( 'gnist/wp_footer' );
+function wp_footer() {
+	\do_action( 'gnist/wp/footer' );
 }
 
 /** Supplemental Actions - gnist/init *****************************************/
@@ -295,7 +334,7 @@ function plugin_update_checker() {
 /**
  * Installer.
  *
- * Hook: gnist/setup_requirements
+ * Hook: gnist/install
  *
  * @hooked gnist/init
  */
@@ -307,11 +346,15 @@ function install() {
  * Setup requirements.
  *
  * Hook: gnist/setup_requirements
+ * Hook: gnist/requirements_included
  *
  * @hooked gnist/init
+ *
+ * @since 1.0.1 [Add] gnist/requirements_included
  */
 function setup_requirements() {
 	\do_action( 'gnist/setup_requirements' );
+	\do_action( 'gnist/requirements_included' );
 }
 
 /**
@@ -320,11 +363,15 @@ function setup_requirements() {
  * Main action responsible for overriding globals set within the gnist/loaded-action.
  *
  * Hook: gnist/setup_globals
+ * Hook: gnist/globals_included
  *
  * @hooked gnist/init
+ *
+ * @since 1.0.1 [Add] gnist/globals_included
  */
 function setup_globals() {
 	\do_action( 'gnist/setup_globals' );
+	\do_action( 'gnist/globals_included' );
 }
 
 /**
@@ -338,38 +385,4 @@ function setup_globals() {
 function setup_instances() {
 	\do_action( 'gnist/setup_instances' );
 	\do_action( 'gnist/instances_included' );
-}
-
-/**
- * Register custom post types.
- *
- * Hook: gnist/before/register/custom_post_type
- * Hook: gnist/register/custom_post_type
- * Hook: gnist/after/register/custom_post_type
- *
- * @hooked gnist/init
- *
- * @link https://developer.wordpress.org/reference/functions/register_post_type/
- */
-function register_custom_post_type() {
-	\do_action( 'gnist/before/register/custom_post_type' );
-	\do_action( 'gnist/register/custom_post_type' );
-	\do_action( 'gnist/after/register/custom_post_type' );
-}
-
-/**
- * Register taxonomy.
- *
- * Hook: gnist/before/register/taxonomy
- * Hook: gnist/register/taxonomy
- * Hook: gnist/after/register/taxonomy
- *
- * @hooked gnist/init
- *
- * @link https://developer.wordpress.org/reference/functions/register_taxonomy/
- */
-function register_taxonomy() {
-	\do_action( 'gnist/before/register/taxonomy' );
-	\do_action( 'gnist/register/taxonomy' );
-	\do_action( 'gnist/after/register/taxonomy' );
 }
