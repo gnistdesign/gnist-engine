@@ -21,7 +21,7 @@
  * @license   MIT
  * @link      https://gnistdesign.no
  * @since     1.0.0
- * @version   1.0.1
+ * @version   1.0.2
  *
  * Copyright (c) 2020 Gnist Design AS
  *
@@ -38,6 +38,34 @@ namespace Gnist\Engine\WP;
 
 defined( 'ABSPATH' ) || exit;
 
+/** Activation / Deactivation *************************************************/
+
+/**
+ * This function is fired on the plugin activation hook.
+ *
+ * Usage: add_action( 'activate_{$basename}', 'Gnist\Engine\WP\activation' )
+ *
+ * * @hook gnist/activation
+ *
+ * @since 1.0.2
+ */
+function activation() {
+	\do_action( 'gnist/activation' );
+}
+
+/**
+ * This function is fired on the plugin deactivation hook.
+ *
+ * Usage: add_action( 'deactivate_{$basename}', 'Gnist\Engine\WP\deactivation' )
+ *
+ * * @hook gnist/deactivation
+ *
+ * @since 1.0.2
+ */
+function deactivation() {
+	\do_action( 'gnist/deactivation' );
+}
+
 /** Main Actions **************************************************************/
 
 /**
@@ -45,9 +73,8 @@ defined( 'ABSPATH' ) || exit;
  *
  * Main action responsible for defining constants, globals, and includes.
  *
- * Hook: gnist/loaded
- *
- * @hooked plugins_loaded
+ * * @hook gnist/loaded
+ * * @hooked plugins_loaded
  *
  * @link https://developer.wordpress.org/reference/hooks/plugins_loaded/
  */
@@ -60,9 +87,8 @@ function loaded() {
  *
  * Main action responsible for initializing methods etc.
  *
- * Hook: gnist/init
- *
- * @hooked init
+ * * @hook gnist/init
+ * * @hooked init
  *
  * @link https://developer.wordpress.org/reference/hooks/init/
  */
@@ -75,9 +101,8 @@ function init() {
  *
  * Main action responsible for executing actions usually hooked directly to init.
  *
- * Hook: gnist/actions
- *
- * @hooked init
+ * * @hook gnist/actions
+ * * @hooked init
  *
  * @link https://developer.wordpress.org/reference/hooks/init/
  */
@@ -88,9 +113,8 @@ function actions() {
 /**
  * Register custom post types.
  *
- * Hook: gnist/register/custom_post_type
- *
- * @hooked init
+ * * @hook gnist/register/custom_post_type
+ * * @hooked init
  *
  * @since 1.0.1 Hooked to init
  *
@@ -104,9 +128,8 @@ function register_custom_post_type() {
 /**
  * Register taxonomy.
  *
- * Hook: gnist/register/taxonomy
- *
- * @hooked init
+ * * @hook gnist/register/taxonomy
+ * * @hooked init
  *
  * @since 1.0.1 Hooked to init
  *
@@ -120,9 +143,8 @@ function register_taxonomy() {
 /**
  * Fires before the theme is loaded.
  *
- * Hook: gnist/setup_theme
- *
- * @hooked setup_theme
+ * * @hook gnist/setup_theme
+ * * @hooked setup_theme
  *
  * @link https://developer.wordpress.org/reference/hooks/setup_theme/
  */
@@ -136,9 +158,8 @@ function setup_theme() {
  * This hook is called during each page load, after the theme is initialized.
  * It is generally used to perform basic setup, registration, and init actions for a theme.
  *
- * Hook: gnist/after/setup_theme
- *
- * @hooked after_setup_theme
+ * * @hook gnist/after/setup_theme
+ * * @hooked after_setup_theme
  *
  * @link https://developer.wordpress.org/reference/hooks/after_setup_theme/
  */
@@ -149,9 +170,8 @@ function after_setup_theme() {
 /**
  * This hook is fired once WP, all plugins, and the theme are fully loaded and instantiated.
  *
- * Hook: gnist/wp_loaded
- *
- * @hooked wp_loaded
+ * * @hook gnist/wp_loaded
+ * * @hooked wp_loaded
  *
  * @link https://developer.wordpress.org/reference/hooks/wp_loaded/
  */
@@ -159,14 +179,27 @@ function wp_loaded() {
 	\do_action( 'gnist/wp_loaded' );
 }
 
+/**
+ * This hook is fired once the WordPress environment has been set up.
+ *
+ * * @hook gnist/wp
+ * * @hooked wp
+ *
+ * @link https://developer.wordpress.org/reference/hooks/wp/
+ *
+ * @since 1.0.2
+ */
+function wp() {
+	\do_action( 'gnist/wp' );
+}
+
 /** Admin Actions *************************************************************/
 
 /**
  * Enqueue scripts for all admin pages.
  *
- * Hook: gnist/admin/scripts
- *
- * @hooked admin_enqueue_scripts
+ * * @hook gnist/admin/scripts
+ * * @hooked admin_enqueue_scripts
  *
  * @link https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts/
  *
@@ -178,7 +211,7 @@ function admin_enqueue_scripts( $hook_suffix ) {
 	 *
 	 * Make sure scripts and styles only runs in allowed admin screens.
 	 *
-	 * Hook: gnist/admin/screens
+	 * * @hook gnist/admin/screens
 	 *
 	 * @var array $screens Allowed admin screens.
 	 */
@@ -187,7 +220,7 @@ function admin_enqueue_scripts( $hook_suffix ) {
 	/**
 	 * Enqueue scripts and styles in admin.
 	 *
-	 * Hook: gnist/admin/scripts
+	 * * @hook gnist/admin/scripts
 	 *
 	 * @param string $hook_suffix Current admin page.
 	 * @param array  $screens     Allowed admin screens.
@@ -198,9 +231,8 @@ function admin_enqueue_scripts( $hook_suffix ) {
 /**
  * Prints admin screen notices.
  *
- * Hook: gnist/admin/notices
- *
- * @hooked admin_notices
+ * * @hook gnist/admin/notices
+ * * @hooked admin_notices
  *
  * @link https://developer.wordpress.org/reference/hooks/admin_notices/
  */
@@ -211,9 +243,8 @@ function admin_notices() {
 /**
  * Fires as an admin screen or script is being initialized.
  *
- * Hook: gnist/admin/init
- *
- * @hooked admin_init
+ * * @hook gnist/admin/init
+ * * @hooked admin_init
  *
  * @link https://developer.wordpress.org/reference/hooks/admin_init/
  */
@@ -224,9 +255,8 @@ function admin_init() {
 /**
  * Fires before the administration menu loads in the admin.
  *
- * Hook: gnist/admin/menu
- *
- * @hooked admin_menu
+ * * @hook gnist/admin/menu
+ * * @hooked admin_menu
  *
  * @link https://developer.wordpress.org/reference/hooks/admin_menu/
  */
@@ -237,9 +267,8 @@ function admin_menu() {
 /**
  * Fires in head section for all admin pages.
  *
- * Hook: gnist/admin/head
- *
- * @hooked admin_head
+ * * @hook gnist/admin/head
+ * * @hooked admin_head
  *
  * @link https://developer.wordpress.org/reference/hooks/admin_head/
  */
@@ -252,22 +281,20 @@ function admin_head() {
 /**
  * Fires when scripts and styles are enqueued.
  *
- * Hook: gnist/public/scripts
- *
- * @hooked wp_enqueue_scripts
+ * * @hook gnist/public/scripts
+ * * @hooked wp_enqueue_scripts
  *
  * @link https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts/
  */
-function enqueue_scripts() {
+function wp_enqueue_scripts() {
 	\do_action( 'gnist/public/scripts' );
 }
 
 /**
  * Prints scripts or data in the head tag on the front end.
  *
- * Hook: gnist/wp/head
- *
- * @hooked wp_head
+ * * @hook gnist/wp/head
+ * * @hooked wp_head
  *
  * @since 1.0.1 Put `wp` in action-namespace.
  *
@@ -280,9 +307,8 @@ function wp_head() {
 /**
  * Triggered after the opening body tag.
  *
- * Hook: gnist/wp/body_open
- *
- * @hooked wp_body_open
+ * * @hook gnist/wp/body_open
+ * * @hooked wp_body_open
  *
  * @since 1.0.1 Put `wp` in action-namespace.
  *
@@ -295,9 +321,8 @@ function wp_body_open() {
 /**
  * Prints scripts or data before the closing body tag on the front end.
  *
- * Hook: gnist/wp/footer
- *
- * @hooked wp_footer
+ * * @hook gnist/wp/footer
+ * * @hooked wp_footer
  *
  * @since 1.0.1 Put `wp` in action-namespace.
  *
@@ -312,9 +337,8 @@ function wp_footer() {
 /**
  * Load translations for the current language.
  *
- * Hook: gnist/load_textdomain
- *
- * @hooked gnist/init
+ * * @hook gnist/load_textdomain
+ * * @hooked gnist/init
  */
 function load_textdomain() {
 	\do_action( 'gnist/load_textdomain' );
@@ -323,9 +347,8 @@ function load_textdomain() {
 /**
  * Check for plugin updates.
  *
- * Hook: gnist/plugin_update_checker
- *
- * @hooked gnist/init
+ * * @hook gnist/plugin_update_checker
+ * * @hooked gnist/init
  */
 function plugin_update_checker() {
 	\do_action( 'gnist/plugin_update_checker' );
@@ -334,9 +357,8 @@ function plugin_update_checker() {
 /**
  * Installer.
  *
- * Hook: gnist/install
- *
- * @hooked gnist/init
+ * * @hook gnist/install
+ * * @hooked gnist/init
  */
 function install() {
 	\do_action( 'gnist/install' );
@@ -345,10 +367,9 @@ function install() {
 /**
  * Setup requirements.
  *
- * Hook: gnist/setup_requirements
- * Hook: gnist/requirements_included
- *
- * @hooked gnist/init
+ * * @hook gnist/setup_requirements
+ * * @hook gnist/requirements_included
+ * * @hooked gnist/init
  *
  * @since 1.0.1 [Add] gnist/requirements_included
  */
@@ -362,10 +383,9 @@ function setup_requirements() {
  *
  * Main action responsible for overriding globals set within the gnist/loaded-action.
  *
- * Hook: gnist/setup_globals
- * Hook: gnist/globals_included
- *
- * @hooked gnist/init
+ * * @hook gnist/setup_globals
+ * * @hook gnist/globals_included
+ * * @hooked gnist/init
  *
  * @since 1.0.1 [Add] gnist/globals_included
  */
@@ -377,10 +397,11 @@ function setup_globals() {
 /**
  * Setup instances.
  *
- * Hook: gnist/setup_instances
- * Hook: gnist/instances_included
+ * * @hook gnist/setup_instances
+ * * @hook gnist/instances_included
+ * * @hooked gnist/init
  *
- * @hooked gnist/init
+ * TODO: Remove in future versions.
  */
 function setup_instances() {
 	\do_action( 'gnist/setup_instances' );
